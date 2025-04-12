@@ -1,16 +1,16 @@
-# netlify.toml
+# Netlify configuration file
+
 [build]
-  publish = "dist"          # Folder with static files or build output (e.g., "build", "dist", or "public")
-  command = "npm run build" # Command to build your site
+  command = "npm run build"
+  publish = "build"
 
-[dev]
-  command = "npm start"     # Local dev server
-  port = 8888               # Local server port
-
-[functions]
-  directory = "netlify/functions" # If you're using Netlify Functions
+[build.environment]
+  NODE_VERSION = "18"  # Change this to match your local node version (e.g., 16, 18, 20)
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[functions]
+  directory = "netlify/functions" # Optional: for future Netlify Functions
