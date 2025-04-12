@@ -1,16 +1,11 @@
-# Netlify configuration file
-
 [build]
   command = "npm run build"
   publish = "build"
 
-[build.environment]
-  NODE_VERSION = "18"  # Change this to match your local node version (e.g., 16, 18, 20)
+[context.production.environment]
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[functions]
-  directory = "netlify/functions" # Optional: for future Netlify Functions
