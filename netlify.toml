@@ -1,0 +1,16 @@
+# netlify.toml
+[build]
+  publish = "dist"          # Folder with static files or build output (e.g., "build", "dist", or "public")
+  command = "npm run build" # Command to build your site
+
+[dev]
+  command = "npm start"     # Local dev server
+  port = 8888               # Local server port
+
+[functions]
+  directory = "netlify/functions" # If you're using Netlify Functions
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
