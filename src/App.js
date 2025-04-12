@@ -11,9 +11,7 @@ const ProtectedRoute = ({ children, isAuthenticated }) => {
 };
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    localStorage.getItem('isAuthenticated') === 'true'
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState('');
 
@@ -92,31 +90,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={
-          isAuthenticated ? <Navigate to="/" replace /> : 
-          <Login onLogin={handleLogin} error={error} />
-        } />
-        
-        <Route path="/" element={
-          <ProtectedRoute isAuthenticated={isAuthenticated}>
-            <Dashboard 
-              categories={categories} 
-              onLogout={handleLogout} 
-              onAddCategory={addCategory}
-              onDeleteCategory={deleteCategory}
-            />
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/edit/:id" element={
-          <ProtectedRoute isAuthenticated={isAuthenticated}>
-            <EditCategory 
-              categories={categories} 
-              onUpdateCategory={updateCategory} 
-            />
-          </ProtectedRoute>
-        } />
-        
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <Login onLogin={handleLogin} error={error} />} />
+        <Route path="/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Dashboard categories={categories} onLogout={handleLogout} onAddCategory={addCategory} onDeleteCategory={deleteCategory} /></ProtectedRoute>} />
+        <Route path="/edit/:id" element={<ProtectedRoute isAuthenticated={isAuthenticated}><EditCategory categories={categories} onUpdateCategory={updateCategory} /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
