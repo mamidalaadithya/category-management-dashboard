@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CategoryCard from './CategoryCard';
 
 const Dashboard = ({ categories, onLogout, onAddCategory, onDeleteCategory }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
 
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,9 +48,7 @@ const Dashboard = ({ categories, onLogout, onAddCategory, onDeleteCategory }) =>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <button className="close-button" onClick={() => setIsModalOpen(false)}>
-              &times;
-            </button>
+            <button className="close-button" onClick={() => setIsModalOpen(false)}>&times;</button>
             <h2 className="modal-title">Add New Category</h2>
             <form onSubmit={(e) => {
               e.preventDefault();

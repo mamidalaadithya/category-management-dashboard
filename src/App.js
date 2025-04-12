@@ -43,7 +43,7 @@ function App() {
         localStorage.setItem('categories', JSON.stringify(sampleCategories));
       }
     }
-  }, []);
+  }, [categories.length, sampleCategories]); // Added missing dependencies
 
   const handleLogin = (username, password) => {
     if (username === "Adithya" && password === "12345678") {
